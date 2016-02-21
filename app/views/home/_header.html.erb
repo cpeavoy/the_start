@@ -8,16 +8,26 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Printerested</a>
+      <%= link_to 'Pinterested', root_path, class: 'navbar-brand'%>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      
       <ul class="nav navbar-nav navbar-right">
-        <Li><%= link_to 'Home', root_path %></li>
-        <Li><%= link_to 'About Us', home_about_path %></Li>
-        <Li> <%= link_to "Login", new_user_session_path %></Li>
-        <LI><%= link_to "Join", new_user_registration_path %></Li>
+          <Li><%= link_to 'Home', root_path %></li>
+          <Li><%= link_to 'About Us', home_about_path %></Li>
+        <%if user_signed_in? %>
+           <Li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></Li>
+           <Li><%= link_to 'Edit Profile', edit_user_registration_path %></Li>
+        <% else %>
+          <Li><%= link_to 'Login', new_user_session_path %></Li>
+          <Li><%= link_to 'Join', new_user_registration_path %></Li>
+        <% end %>
+        
+  
+       
+        
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
